@@ -103,7 +103,7 @@ func writeState(ep *models.Endpoint) error {
 				e.K8sPodName = parts[0]
 				e.K8sNamespace = parts[1]
 			} else {
-				log.Warning("Invalid namespac/pod name '%s' for endpoint %d",
+				log.Warningf("Invalid namespac/pod name '%s' for endpoint %d",
 					ep.Status.ExternalIdentifiers.PodName, e.ID)
 			}
 		} else {
@@ -203,6 +203,7 @@ func writeState(ep *models.Endpoint) error {
 
 	_, err := os.Stat(headerPath)
 	if !os.IsNotExist(err) && os.Getenv("OVERWRITE_HEADERFILE") == "" {
+		log.WithField("file", headerPath).Info("Skipping already existing headerfile")
 		return nil
 	}
 
