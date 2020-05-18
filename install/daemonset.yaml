@@ -19,8 +19,8 @@ spec:
         env:
         - name: CILIUM_VERSION
           value: "1.6.7 0000000 2020-05-13T22:55:12-08:00 go version go1.12.5 linux/amd64"
-        image: "docker.io/tgraf/state-writer:latest"
-        imagePullPolicy: Always
+        image: "quay.io/cilium/state-writer:0.1"
+        imagePullPolicy: IfNotPresent
         name: state-writer
         securityContext:
           capabilities:
